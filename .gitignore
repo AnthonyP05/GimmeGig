@@ -8,12 +8,6 @@
 # testing
 /coverage
 
-# Cypress
-test-results
-cypress/screenshots
-cypress/videos
-cypress.env.json
-
 # next.js
 /.next/
 /out/
@@ -23,7 +17,6 @@ cypress.env.json
 
 # misc
 .DS_Store
-*.pem
 
 # debug
 npm-debug.log*
@@ -35,6 +28,3 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-
-# vercel
-.vercel
