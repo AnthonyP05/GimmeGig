@@ -1,5 +1,5 @@
-import LoginButtons from './LoginButtons'
-import { Roboto } from '@next/font/google';
+import LoginButtons from './LoginButtons';
+import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({
   weight: ['400', '700'], // Specify the weights you need
@@ -12,11 +12,11 @@ export default function RightPanel() {
     fontSize: '2rem',
     marginBottom: '1.5rem',
     textAlign: 'center', // Center the text
-  }
+  };
 
   const highlightStyle = {
     color: '#9f7aea', // nice purple
-  }
+  };
 
   const rightPaneStyle = {
     width: '100%',
@@ -30,7 +30,7 @@ export default function RightPanel() {
     padding: 0,
     margin: 0, // Remove margin
     boxSizing: 'border-box', // Include padding and border in the element's total width and height
-  }
+  };
 
   return (
     <div style={rightPaneStyle}>
@@ -39,5 +39,5 @@ export default function RightPanel() {
       </h1>
       <LoginButtons />
     </div>
-  )
+  );
 }
