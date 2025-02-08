@@ -1,9 +1,7 @@
-import Homepage from '../layout/Login';
+import ProfileView from './layout/profileView';
 
 export default function Home() {
   return (
-    <div>
-      <Homepage />
-    </div>
+    <ProfileView />
   );
 }

@@ -1,11 +1,11 @@
-const axios = require('axios');
-const qs = require('qs');
+import axios from 'axios';
+import qs from 'qs';
+import NodeCache from 'node-cache';
 
-// Replace with your own Client ID and Client Secret
 const clientId = '61cd891f76a84876a029355e2496eaa1';
 const clientSecret = '87144edc21524b498b76b31d873408b0';
+const cache = new NodeCache({ stdTTL: 3600 }); // Cache for 1 hour
 
-// Get access token
 const getAccessToken = async () => {
 	const tokenUrl = 'https://accounts.spotify.com/api/token';
 	const data = qs.stringify({ grant_type: 'client_credentials' });
@@ -22,14 +22,12 @@ const getAccessToken = async () => {
 	}
 };
 
-// Extract artist ID from Spotify account link
 const getArtistIdFromLink = (spotifyLink) => {
 	const regex = /https:\/\/open\.spotify\.com\/artist\/([a-zA-Z0-9]+)/;
 	const match = spotifyLink.match(regex);
 	return match ? match[1] : null;
 };
 
-// Get top tracks by artist ID
 const getTopTracks = async (artistId, accessToken) => {
 	const topTracksUrl = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=US`;
 	const headers = {
@@ -44,22 +42,25 @@ const getTopTracks = async (artistId, accessToken) => {
 	}
 };
 
-// Make API request
-const getSpotifyData = async (spotifyLink) => {
-	const accessToken = await getAccessToken();
+export default async (req, res) => {
+	const { spotifyLink } = req.body;
 	const artistId = getArtistIdFromLink(spotifyLink);
 	if (!artistId) {
-		console.error('Invalid Spotify link');
-		return [];
+		return res.status(400).json({ error: 'Invalid Spotify link' });
 	}
 
+	const cacheKey = `topTracks_${artistId}`;
+	const cachedTracks = cache.get(cacheKey);
+	if (cachedTracks) {
+		return res.status(200).json({ tracks: cachedTracks });
+	}
+
+	const accessToken = await getAccessToken();
 	const topTracks = await getTopTracks(artistId, accessToken);
 	if (!topTracks || topTracks.length === 0) {
-		return [];
+		return res.status(200).json({ tracks: [] });
 	}
 
-	return topTracks;
+	cache.set(cacheKey, topTracks);
+	return res.status(200).json({ tracks: topTracks });
 };
-
-// Example usage
-// getSpotifyData('https://open.spotify.com/artist/4dpARuHxo51G3z768sgnrY'); // Example artist link
