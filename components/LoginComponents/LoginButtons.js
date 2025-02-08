@@ -25,7 +25,7 @@ export default function LoginButtons() {
 
   const buttonContainerStyle = {
     display: 'flex',
-    gap: '2.5rem',
+    gap: '3.5rem',
     justifyContent: 'center', // Center the buttons horizontally
     width: '100%', // Ensure the container takes the full width
   };

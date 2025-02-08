@@ -1,4 +1,10 @@
 import Image from 'next/image'
+import { Russo_One } from 'next/font/google';
+
+const russo = Russo_One({
+  weight: ['400'], // Specify the weights you need
+  subsets: ['latin'], // Specify the subsets you need
+});
 
 export default function ImagePanel() {
     
@@ -40,7 +46,7 @@ export default function ImagePanel() {
 
   return (
     <div style={leftPaneStyle}>
-      <div style={brandStyle}>GimmeGig</div>
+      <div className={russo.className} style={brandStyle}>GimmeGig</div>
       <Image
         src="/stage.jpeg"
         alt="Musician on stage"
