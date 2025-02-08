@@ -11,7 +11,7 @@ const roboto = Roboto({
 
 const DiscoverPage = () => {
     const [recentCards, setRecentCards] = useState(Array.from({ length: 24 }, (_, i) => `Recent Card ${i + 1}`));
-    const [forYouCards, setForYouCards] = useState(Array.from({ length: 7 }, (_, i) => `Profile Card ${i + 1}`));
+    const [forYouCards, setForYouCards] = useState(Array.from({ length: 8 }, (_, i) => `Profile Card ${i + 1}`));
     const mainContainerRef = useRef(null);
     const forYouContainerRef = useRef(null);
 

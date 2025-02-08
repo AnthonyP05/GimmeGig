@@ -16,14 +16,10 @@ const Card = ({ href, imageSrc, altText }) => {
         position: 'relative', // Required for the Image component to fill the card
     };
 
-    const imageStyles = {
-        objectFit: 'cover',
-    };
-
     return (
         <Link href={href}>
             <div style={cardStyles} className="card">
-                <Image src={imageSrc} alt={altText} layout="fill" style={imageStyles} />
+                <Image src={imageSrc} alt={altText} style={{objectFit: 'cover'}} fill/>
             </div>
         </Link>
     );

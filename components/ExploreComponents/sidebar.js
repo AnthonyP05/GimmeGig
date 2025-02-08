@@ -23,18 +23,20 @@ const Sidebar = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between', // Ensure the logout button is at the bottom
     };
 
     const titleContainer = {
         textAlign: 'center',
         marginBottom: '20px',
+        marginTop: '20px', // Move the title slightly lower
     };
 
     const titles = {
         fontSize: '2rem',
         fontWeight: 'bold',
         margin: 0,
+        
     };
 
     const boxContainer = {
@@ -42,6 +44,7 @@ const Sidebar = () => {
         flexDirection: 'column',
         gap: '20px',
         marginTop: '20px',
+        
     };
 
     const logoutStyles = {
@@ -49,18 +52,30 @@ const Sidebar = () => {
         textDecoration: 'none',
         fontSize: '1rem',
         cursor: 'pointer',
+        marginBottom: '20px', // Add margin to the bottom
+    };
+
+    const verticalLine = {
+        width: '0.3vh',
+        height: '38vh',
+        backgroundColor: 'white',
+        margin: '20px 0',
+        
     };
 
     return (
         <div style={sidebar}>
-            <div style={titleContainer}>
-                <h2 className={russo.className} style={titles}>GG</h2>
+            <div>
+                <div style={titleContainer}>
+                    <h2 className={russo.className} style={titles}>GG</h2>
+                </div>
+                <div style={boxContainer}>
+                    <SidebarCard href="/link1" imageSrc="/money-41-256.png" altText="P" title="Finances" />
+                    <SidebarCard href="/link2" imageSrc="/ozzy.jpg" altText="G" title="Gigs/Artists" />
+                    <SidebarCard href="/link3" imageSrc="/profile-icon-png-889.png" altText="$" title="Profile" />
+                </div>
             </div>
-            <div style={boxContainer}>
-                <SidebarCard href="/link1" imageSrc="/money-41-256.png" altText="Finances" title="Finances" />
-                <SidebarCard href="/link2" imageSrc="/ozzy.jpg" altText="Gigs/Artists" title="Gigs/Artists" />
-                <SidebarCard href="/link3" imageSrc="/profile-icon-png-889.png" altText="Profile" title="Profile" />
-            </div>
+            <div style={verticalLine}></div>
             <Link href="/logout">
                 <div style={logoutStyles}>Logout</div>
             </Link>
