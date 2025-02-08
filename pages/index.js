@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -17,6 +18,13 @@ export default function Home() {
         <p className={styles.description}>
           Get started by editing <code>pages/index.js</code>
         </p>
+
+        {/* Button to navigate to the Discover Page */}
+        <Link href="/layout/discoverpage">
+          <button style={{ padding: '10px 20px', cursor: 'pointer' }}>
+            Go to Discover Page
+          </button>
+        </Link>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
