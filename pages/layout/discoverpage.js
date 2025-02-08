@@ -8,7 +8,6 @@ const roboto = Roboto({
   subsets: ['latin'], // Specify the subsets you need
 });
 
-
 const DiscoverPage = () => {
     const [recentCards, setRecentCards] = useState(Array.from({ length: 24 }, (_, i) => `Recent Card ${i + 1}`));
     const [forYouCards, setForYouCards] = useState(Array.from({ length: 8 }, (_, i) => `Profile Card ${i + 1}`));
@@ -79,8 +78,8 @@ const DiscoverPage = () => {
     const mainContentStyles = {
         flex: 1,
         padding: '20px',
-        paddingTop: '3vh',
-        paddingLeft: '8vh',
+        paddingTop: '5vh',
+        paddingLeft: '12vh',
         backgroundColor: '#333333',
         height: '100vh',
         overflowY: 'auto',
@@ -107,6 +106,8 @@ const DiscoverPage = () => {
         fontSize: '2rem',
         color: '#FFFFFF',
         marginBottom: '20px',
+        padding: '3vh',
+        paddingLeft: '0vh',
     };
 
     const forYouCardsContainer = {
@@ -125,13 +126,15 @@ const DiscoverPage = () => {
         fontSize: '2rem',
         color: '#FFFFFF',
         marginBottom: '20px',
+        padding: '3vh',
+        paddingLeft: '0vh',
+        paddingTop: '0vh'
     };
 
     const recentCardsContainer = {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
         gap: '20px',
-        
     };
 
     const siteContainer = {
@@ -154,7 +157,7 @@ const DiscoverPage = () => {
                     <div className={roboto.className} style={forYouStyles}>For You</div>
                     <div style={forYouCardsContainer} ref={forYouContainerRef} className="hide-scrollbar">
                         {forYouCards.map((card, index) => (
-                            <Card key={index} href={`/profile/${index + 1}`} imageSrc="/ozzy.jpg" altText={card} />
+                            <Card key={index} href={`/profile/${index + 1}`} imageSrc="/ozzy.jpg" altText={card} line1={"Band Name"} column1={"Genre"} column2={"Rating ☆"}/>
                         ))}
                     </div>
                 </div>
@@ -162,7 +165,7 @@ const DiscoverPage = () => {
                     <div className={roboto.className} style={recentStyles}>Recent</div>
                     <div style={recentCardsContainer}>
                         {recentCards.map((card, index) => (
-                            <Card key={index} href={`/recent/${index + 1}`} imageSrc="/ozzy.jpg" altText={card} />
+                            <Card key={index} href={`/recent/${index + 1}`} imageSrc="/ozzy.jpg" altText={card} line1={"Band Name"} column1={"Genre"} column2={"Rating ☆"}/>
                         ))}
                     </div>
                 </div>

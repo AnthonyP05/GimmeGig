@@ -58,7 +58,7 @@ const Sidebar = () => {
     const verticalLine = {
         width: '0.3vh',
         height: '38vh',
-        backgroundColor: 'white',
+        backgroundColor: '#533588',
         margin: '20px 0',
         
     };
