@@ -84,7 +84,7 @@ const DiscoverPage = () => {
         backgroundColor: '#333333',
         height: '100vh',
         overflowY: 'auto',
-        marginLeft: '250px', // Add margin to account for the sidebar width
+        marginLeft: '50px', // Add margin to account for the sidebar width
         scrollbarWidth: 'none', // Hide scrollbar for Firefox
         msOverflowStyle: 'none', // Hide scrollbar for Internet Explorer and Edge
     };
@@ -134,13 +134,20 @@ const DiscoverPage = () => {
         
     };
 
+    const siteContainer = {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        flex: 1
+    };
+
     return (
         <div style={containerStyles}>
             {/* Include the Sidebar component */}
             <div style={sideBarStyles}>
                 <Sidebar />
             </div>
-
+            
             {/* Main content area */}
             <main style={mainContentStyles} ref={mainContainerRef} className="hide-scrollbar">
                 <div style={forYouContainer}>
