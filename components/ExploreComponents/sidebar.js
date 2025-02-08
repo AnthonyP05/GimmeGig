@@ -70,8 +70,8 @@ const Sidebar = () => {
                     <h2 className={russo.className} style={titles}>GG</h2>
                 </div>
                 <div style={boxContainer}>
-                    <SidebarCard href="/link1" imageSrc="/money-41-256.png" altText="P" title="Finances" />
-                    <SidebarCard href="/link2" imageSrc="/ozzy.jpg" altText="G" title="Gigs/Artists" />
+                    <SidebarCard href="/layout/profileView" imageSrc="/money-41-256.png" altText="P" title="Finances" />
+                    <SidebarCard href="/layout/discoverpage" imageSrc="/ozzy.jpg" altText="G" title="Gigs/Artists" />
                     <SidebarCard href="/link3" imageSrc="/profile-icon-png-889.png" altText="$" title="Profile" />
                 </div>
             </div>
