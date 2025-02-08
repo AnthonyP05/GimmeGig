@@ -1,9 +1,11 @@
-// pages/index.js
-import ImagePanel from '../components/LoginComponents/ImagePanel'
-import RightPanel from '../components/LoginComponents/RightPanel'
+import ImagePanel from '../components/LoginComponents/ImagePanel';
+import RightPanel from '../components/LoginComponents/RightPanel';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import ProfileView from '../pages/layout/profileView';
 
-export default function HomePage() {
-  // Inline style objects
+const Homepage = () => {
+  const { user, error, isLoading } = useUser();
+
   const containerStyle = {
     display: 'flex',
     flex: 1,
@@ -15,13 +17,19 @@ export default function HomePage() {
     padding: 0,
     width: '100%',
     overflow: 'hidden', // Prevent horizontal scrolling
+  };
 
-  }
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
 
   return (
     <div style={containerStyle}>
-      <ImagePanel />
-      <RightPanel />
+      {user ? <ProfileView /> : <>
+        <ImagePanel />
+        <RightPanel />
+      </>}
     </div>
-  )
-}
+  );
+};
+
+export default Homepage;

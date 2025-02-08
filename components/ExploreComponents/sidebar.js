@@ -76,7 +76,7 @@ const Sidebar = () => {
                 </div>
             </div>
             <div style={verticalLine}></div>
-            <Link href="/logout">
+            <Link href="/api/auth/logout">
                 <div style={logoutStyles}>Logout</div>
             </Link>
         </div>
