@@ -1,0 +1,3 @@
+.card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+}
