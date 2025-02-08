@@ -1,0 +1,25 @@
+.profilePage {
+  padding: 20px;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+}
+
+.profilePicture {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.contactInfo, .eventListings, .reviews, .gallery, .contactForm {
+  margin-top: 20px;
+}
+
+.galleryImages img {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+}
