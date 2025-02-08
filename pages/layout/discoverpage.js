@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from '../../components/ExploreComponents/sidebar';
 import Card from '../../components/ExploreComponents/card';
+import { Roboto } from 'next/font/google';
+
+const roboto = Roboto({
+  weight: ['400', '700'], // Specify the weights you need
+  subsets: ['latin'], // Specify the subsets you need
+});
+
 
 const DiscoverPage = () => {
     const [recentCards, setRecentCards] = useState(Array.from({ length: 24 }, (_, i) => `Recent Card ${i + 1}`));
@@ -74,7 +81,7 @@ const DiscoverPage = () => {
         padding: '20px',
         paddingTop: '3vh',
         paddingLeft: '8vh',
-        backgroundColor: '#f4f4f4',
+        backgroundColor: '#333333',
         height: '100vh',
         overflowY: 'auto',
         marginLeft: '250px', // Add margin to account for the sidebar width
@@ -98,7 +105,7 @@ const DiscoverPage = () => {
 
     const forYouStyles = {
         fontSize: '2rem',
-        color: '#2c3e50',
+        color: '#FFFFFF',
         marginBottom: '20px',
     };
 
@@ -116,7 +123,7 @@ const DiscoverPage = () => {
 
     const recentStyles = {
         fontSize: '2rem',
-        color: '#2c3e50',
+        color: '#FFFFFF',
         marginBottom: '20px',
     };
 
@@ -137,7 +144,7 @@ const DiscoverPage = () => {
             {/* Main content area */}
             <main style={mainContentStyles} ref={mainContainerRef} className="hide-scrollbar">
                 <div style={forYouContainer}>
-                    <div style={forYouStyles}>For You</div>
+                    <div className={roboto.className} style={forYouStyles}>For You</div>
                     <div style={forYouCardsContainer} ref={forYouContainerRef} className="hide-scrollbar">
                         {forYouCards.map((card, index) => (
                             <Card key={index} href={`/profile/${index + 1}`} imageSrc="/ozzy.jpg" altText={card} />
@@ -145,7 +152,7 @@ const DiscoverPage = () => {
                     </div>
                 </div>
                 <div style={recentContainer} >
-                    <div style={recentStyles}>Recent</div>
+                    <div className={roboto.className} style={recentStyles}>Recent</div>
                     <div style={recentCardsContainer}>
                         {recentCards.map((card, index) => (
                             <Card key={index} href={`/recent/${index + 1}`} imageSrc="/ozzy.jpg" altText={card} />

@@ -1,68 +1,65 @@
 import { useState } from 'react';
 import SidebarCard from './sidebarCard';
 import Link from 'next/link';
+import { Russo_One } from 'next/font/google';
+
+const russo = Russo_One({
+  weight: ['400'], // Specify the weights you need
+  subsets: ['latin'], // Specify the subsets you need
+});
 
 const Sidebar = () => {
-    const [hoveredLink, setHoveredLink] = useState(null);
-
     const sidebar = {
-        width: '12vh',
-        height: '200vh',
-        backgroundColor: '#2c3e50',
+        width: '10vh',
+        height: '100vh',
+        backgroundColor: '#6934DF',  // Purple background
         color: 'white',
-        padding: '20px',
+        padding: '10px 0',
         boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)',
         position: 'fixed',
         top: 0,
         left: 0,
-        bottom: 0,
-        overflowY: 'auto',
+        overflowY: 'hidden',
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
         justifyContent: 'space-between',
     };
 
     const titleContainer = {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-around',
         textAlign: 'center',
+        marginBottom: '20px',
     };
 
     const titles = {
-        fontSize: '1.5rem',
-        marginBottom: '20px',
-        marginTop: '0px',
-        textAlign: 'center', // Align the title to the left
+        fontSize: '2rem',
+        fontWeight: 'bold',
+        margin: 0,
     };
 
     const boxContainer = {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-around',
-        height: 'calc(45vh - 100px)', // Adjust height to fit within the sidebar
+        gap: '20px',
+        marginTop: '20px',
     };
 
     const logoutStyles = {
         color: 'white',
         textDecoration: 'none',
-        fontSize: '1.1rem',
-        textAlign: 'center',
+        fontSize: '1rem',
         cursor: 'pointer',
-        marginTop: '20px',
     };
 
     return (
         <div style={sidebar}>
-            <div>
-                <div style={titleContainer}>
-                    <h2 style={titles}>GG</h2>
-                </div>
-                <div style={boxContainer}>
-                    <SidebarCard href="/link1" imageSrc="/money-41-256.png" altText="Finances" title="Finances" />
-                    <SidebarCard href="/link2" imageSrc="/ozzy.jpg" altText="Gigs/Artists" title="Gigs/Artists" />
-                    <SidebarCard href="/link3" imageSrc="/profile-icon-png-889.png" altText="Profile" title="Profile" />
-                </div>
+            <div style={titleContainer}>
+                <h2 className={russo.className} style={titles}>GG</h2>
+            </div>
+            <div style={boxContainer}>
+                <SidebarCard href="/link1" imageSrc="/money-41-256.png" altText="Finances" title="Finances" />
+                <SidebarCard href="/link2" imageSrc="/ozzy.jpg" altText="Gigs/Artists" title="Gigs/Artists" />
+                <SidebarCard href="/link3" imageSrc="/profile-icon-png-889.png" altText="Profile" title="Profile" />
             </div>
             <Link href="/logout">
                 <div style={logoutStyles}>Logout</div>

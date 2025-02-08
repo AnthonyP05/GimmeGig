@@ -4,25 +4,26 @@ import React from 'react';
 
 const SidebarCard = ({ href, imageSrc, altText, title }) => {
     const cardStyles = {
-        backgroundColor: '#34495e',
-        width: '60px',
-        height: '60px',
-        borderRadius: '5px',
-        position: 'relative', // Required for the Image component to fill the card
-        cursor: 'pointer', // Add cursor pointer for clickable effect
-        overflow: 'hidden', // Ensure the image fits within the card
-        margin: '10px auto', // Center the card and add margin
-    };
-
-    const imageStyles = {
-        objectFit: 'contain',
+        backgroundColor: '#3E2F59',  // Slightly darker purple for contrast
+        width: '6vh',
+        height: '6vh',
+        borderRadius: '15%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        cursor: 'pointer',
+        overflow: 'hidden',
+        margin: '10px 0',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        transition: 'transform 0.2s ease',
     };
 
     return (
         <div style={{ textAlign: 'center' }}>
             <Link href={href}>
                 <div style={cardStyles} className="card">
-                    <Image src={imageSrc} alt={altText} layout="fill" style={imageStyles} />
+                    {/* Provide explicit width and height */}
+                    <Image src={imageSrc} alt={altText} width={40} height={40} />
                 </div>
             </Link>
         </div>
