@@ -34,22 +34,19 @@ export default function LoginButtons() {
 
   const handleButtonClick = (button) => {
     setSelectedButton(button);
-    if (button === 'event') {
-      router.push('/layout/discoverpage');
-    }
+    router.push('/api/auth/login');
+    // Enter into database login type
   };
 
   return (
     <div style={buttonContainerStyle}>
       <button
-        href='/api/auth/login'
         style={musicianButtonStyle}
         onClick={() => handleButtonClick('musician')}
       >
         Musician
       </button>
       <button
-        href='/api/auth/login'
         style={eventButtonStyle}
         onClick={() => handleButtonClick('event')}
       >
