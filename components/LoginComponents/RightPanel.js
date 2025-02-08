@@ -1,4 +1,10 @@
 import LoginButtons from './LoginButtons'
+import { Roboto } from '@next/font/google';
+
+const roboto = Roboto({
+  weight: ['400', '700'], // Specify the weights you need
+  subsets: ['latin'], // Specify the subsets you need
+});
 
 export default function RightPanel() {
 
@@ -28,7 +34,7 @@ export default function RightPanel() {
 
   return (
     <div style={rightPaneStyle}>
-      <h1 style={headlineStyle}>
+      <h1 className={roboto.className} style={headlineStyle}>
         Book a gig in a <span style={highlightStyle}>click</span>.
       </h1>
       <LoginButtons />
