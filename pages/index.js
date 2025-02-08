@@ -1,8 +1,9 @@
-import Homepage from '../layout/HomePage';
-import styles from '../styles/Home.module.css';
+import Homepage from '../layout/Login';
 
 export default function Home() {
   return (
-    <Homepage />
+    <div>
+      <Homepage />
+    </div>
   );
 }
