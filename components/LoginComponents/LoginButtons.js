@@ -42,12 +42,14 @@ export default function LoginButtons() {
   return (
     <div style={buttonContainerStyle}>
       <button
+        href='/api/auth/login'
         style={musicianButtonStyle}
         onClick={() => handleButtonClick('musician')}
       >
         Musician
       </button>
       <button
+        href='/api/auth/login'
         style={eventButtonStyle}
         onClick={() => handleButtonClick('event')}
       >

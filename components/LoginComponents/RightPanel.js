@@ -1,5 +1,7 @@
 import LoginButtons from './LoginButtons';
 import { Roboto } from 'next/font/google';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import ProfileView from '../../pages/layout/profileView';
 
 const roboto = Roboto({
   weight: ['400', '700'], // Specify the weights you need
@@ -7,6 +9,9 @@ const roboto = Roboto({
 });
 
 export default function RightPanel() {
+  const { user, error, isLoading } = useUser();
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
 
   const headlineStyle = {
     fontSize: '2rem',
@@ -32,12 +37,17 @@ export default function RightPanel() {
     boxSizing: 'border-box', // Include padding and border in the element's total width and height
   };
 
+  if (user) {
+    return <ProfileView />;
+  }
+
   return (
     <div style={rightPaneStyle}>
       <h1 className={roboto.className} style={headlineStyle}>
         Book a gig in a <span style={highlightStyle}>click</span>.
       </h1>
       <LoginButtons />
+      <a href='/api/auth/login'>Login</a>
     </div>
   );
 }

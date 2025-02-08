@@ -2,28 +2,32 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 
-const SidebarCard = ({ href, imageSrc, altText, title }) => {
+const SidebarCard = ({ href, imageSrc, altText }) => {
     const cardStyles = {
-        backgroundColor: '#3E2F59',  // Slightly darker purple for contrast
-        width: '6vh',
-        height: '6vh',
-        borderRadius: '15%',
+        backgroundColor: '#3E2F59',
+        width: '70px', // Increase width
+        height: '70px', // Increase height
+        borderRadius: '15px',
+        position: 'relative', // Required for the Image component to fill the card
+        cursor: 'pointer', // Add cursor pointer for clickable effect
+        overflow: 'hidden', // Ensure the image fits within the card
+        margin: '12px auto', // Center the card and add margin
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        cursor: 'pointer',
-        overflow: 'hidden',
-        margin: '10px 0',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        transition: 'transform 0.2s ease',
+        fontSize: '2.0rem', // Enlarge text
+        color: 'white', // Text color
     };
+
+    const textStyles = {
+        textDecoration: 'none',
+    }
 
     return (
         <div style={{ textAlign: 'center' }}>
-            <Link href={href}>
+            <Link href={href} style={textStyles}>
                 <div style={cardStyles} className="card">
-                    {/* Provide explicit width and height */}
-                    <Image src={imageSrc} alt={altText} width={40} height={40} />
+                    {altText}
                 </div>
             </Link>
         </div>
