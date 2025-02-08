@@ -1,40 +1,91 @@
-import React, { useState, useEffect } from 'react';
-import Sidebar from '../../components/sidebar';
+import React, { useState, useEffect, useRef } from 'react';
+import Sidebar from '../../components/ExploreComponents/sidebar';
+import Card from '../../components/ExploreComponents/card';
+import { Roboto } from 'next/font/google';
+
+const roboto = Roboto({
+  weight: ['400', '700'], // Specify the weights you need
+  subsets: ['latin'], // Specify the subsets you need
+});
 
 const DiscoverPage = () => {
-    const [exploreCards, setExploreCards] = useState(Array.from({ length: 10 }, (_, i) => `Explore Card ${i + 1}`));
-    const [forYouCards, setForYouCards] = useState(Array.from({ length: 6 }, (_, i) => `Profile Card ${i + 1}`));
+    const [recentCards, setRecentCards] = useState(Array.from({ length: 24 }, (_, i) => `Recent Card ${i + 1}`));
+    const [forYouCards, setForYouCards] = useState(Array.from({ length: 8 }, (_, i) => `Profile Card ${i + 1}`));
+    const mainContainerRef = useRef(null);
+    const forYouContainerRef = useRef(null);
 
-    // Function to load more cards
-    const loadMoreCards = () => {
-        setExploreCards(prevCards => [
+    // Function to load more cards for Recent section
+    const loadMoreRecentCards = () => {
+        setRecentCards(prevCards => [
             ...prevCards,
-            ...Array.from({ length: 10 }, (_, i) => `Explore Card ${prevCards.length + i + 1}`)
+            ...Array.from({ length: 10 }, (_, i) => `Recent Card ${prevCards.length + i + 1}`)
         ]);
     };
 
-    // Infinite scroll effect
+    // Function to load more cards for For You section
+    const loadMoreForYouCards = () => {
+        setForYouCards(prevCards => [
+            ...prevCards,
+            ...Array.from({ length: 7 }, (_, i) => `Profile Card ${prevCards.length + i + 1}`)
+        ]);
+    };
+
+    // Infinite scroll effect for Recent section
     useEffect(() => {
         const handleScroll = () => {
-            if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-                loadMoreCards();
+            if (mainContainerRef.current) {
+                const { scrollTop, scrollHeight, clientHeight } = mainContainerRef.current;
+                if (scrollTop + clientHeight >= scrollHeight) {
+                    loadMoreRecentCards();
+                }
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const recentContainer = mainContainerRef.current;
+        if (recentContainer) {
+            recentContainer.addEventListener('scroll', handleScroll);
+        }
+        return () => {
+            if (recentContainer) {
+                recentContainer.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
+
+    // Infinite scroll effect for For You section
+    useEffect(() => {
+        const handleScroll = () => {
+            if (forYouContainerRef.current) {
+                const { scrollLeft, scrollWidth, clientWidth } = forYouContainerRef.current;
+                if (scrollLeft + clientWidth >= scrollWidth) {
+                    loadMoreForYouCards();
+                }
+            }
+        };
+
+        const forYouContainer = forYouContainerRef.current;
+        if (forYouContainer) {
+            forYouContainer.addEventListener('scroll', handleScroll);
+        }
+        return () => {
+            if (forYouContainer) {
+                forYouContainer.removeEventListener('scroll', handleScroll);
+            }
+        };
     }, []);
 
     // Inline styles for the main content area
     const mainContentStyles = {
         flex: 1,
         padding: '20px',
-        paddingTop: '3vh',
-        paddingLeft: '8vh',
-        backgroundColor: '#f4f4f4',
+        paddingTop: '5vh',
+        paddingLeft: '12vh',
+        backgroundColor: '#333333',
         height: '100vh',
         overflowY: 'auto',
-        marginLeft: '250px', // Add margin to account for the sidebar width
+        marginLeft: '50px', // Add margin to account for the sidebar width
+        scrollbarWidth: 'none', // Hide scrollbar for Firefox
+        msOverflowStyle: 'none', // Hide scrollbar for Internet Explorer and Edge
     };
 
     const sideBarStyles = {
@@ -53,45 +104,44 @@ const DiscoverPage = () => {
 
     const forYouStyles = {
         fontSize: '2rem',
-        color: '#2c3e50',
+        color: '#FFFFFF',
         marginBottom: '20px',
+        padding: '3vh',
+        paddingLeft: '0vh',
     };
 
     const forYouCardsContainer = {
         display: 'flex',
         overflowX: 'auto',
         gap: '20px',
+        scrollbarWidth: 'none', // Hide scrollbar for Firefox
+        msOverflowStyle: 'none', // Hide scrollbar for Internet Explorer and Edge
     };
 
-    const exploreContainer = {
+    const recentContainer = {
         marginBottom: '40px',
     };
 
-    const exploreStyles = {
+    const recentStyles = {
         fontSize: '2rem',
-        color: '#2c3e50',
+        color: '#FFFFFF',
         marginBottom: '20px',
+        padding: '3vh',
+        paddingLeft: '0vh',
+        paddingTop: '0vh'
     };
 
-    const exploreCardsContainer = {
+    const recentCardsContainer = {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
         gap: '20px',
-        
     };
 
-    const cardStyles = {
-        backgroundColor: '#fff',
-        padding: '20px',
-        borderRadius: '10px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        minWidth: '200px',
-        minHeight: '150px',
-        transition: 'transform 0.3s ease', // Add transition for smooth enlargement
-    };
-
-    const cardHoverStyles = {
-        transform: 'scale(1.05)', // Slightly enlarge the card on hover
+    const siteContainer = {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        flex: 1
     };
 
     return (
@@ -100,26 +150,22 @@ const DiscoverPage = () => {
             <div style={sideBarStyles}>
                 <Sidebar />
             </div>
-
+            
             {/* Main content area */}
-            <main style={mainContentStyles}>
+            <main style={mainContentStyles} ref={mainContainerRef} className="hide-scrollbar">
                 <div style={forYouContainer}>
-                    <div style={forYouStyles}>For You</div>
-                    <div style={forYouCardsContainer}>
+                    <div className={roboto.className} style={forYouStyles}>For You</div>
+                    <div style={forYouCardsContainer} ref={forYouContainerRef} className="hide-scrollbar">
                         {forYouCards.map((card, index) => (
-                            <div key={index} style={cardStyles} className="card">
-                                {card}
-                            </div>
+                            <Card key={index} href={`/profile/${index + 1}`} imageSrc="/ozzy.jpg" altText={card} line1={"Band Name"} column1={"Genre"} column2={"Rating ☆"}/>
                         ))}
                     </div>
                 </div>
-                <div style={exploreContainer}>
-                    <div style={exploreStyles}>Explore</div>
-                    <div style={exploreCardsContainer}>
-                        {exploreCards.map((card, index) => (
-                            <div key={index} style={cardStyles} className="card">
-                                {card}
-                            </div>
+                <div style={recentContainer} >
+                    <div className={roboto.className} style={recentStyles}>Recent</div>
+                    <div style={recentCardsContainer}>
+                        {recentCards.map((card, index) => (
+                            <Card key={index} href={`/recent/${index + 1}`} imageSrc="/ozzy.jpg" altText={card} line1={"Band Name"} column1={"Genre"} column2={"Rating ☆"}/>
                         ))}
                     </div>
                 </div>
