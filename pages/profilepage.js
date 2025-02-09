@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sidebar from '../../components/ExploreComponents/sidebar';
+import Sidebar from '../components/ExploreComponents/sidebar';
 import axios from 'axios';
 import { Roboto } from 'next/font/google';
 
