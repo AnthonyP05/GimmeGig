@@ -9,6 +9,20 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  profile: {
+    bandName: {
+      type: String,
+      required: true,
+    },
+    spotifyLink: {
+      type: String,
+      required: true,
+    },
+    bio: {
+      type: String,
+      required: true,
+    },
+  },
 });
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
