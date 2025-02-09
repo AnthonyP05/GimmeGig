@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
+import { Russo_One } from 'next/font/google';
+
+const russo = Russo_One({
+  weight: ['400'], // Specify the weights you need
+  subsets: ['latin'], // Specify the subsets you need
+});
 
 const SidebarCard = ({ href, imageSrc, altText }) => {
     const cardStyles = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../../components/ExploreComponents/sidebar';
+import Sidebar from '../components/ExploreComponents/sidebar';
 
 const ProfileView = () => {
 

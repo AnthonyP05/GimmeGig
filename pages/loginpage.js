@@ -1,7 +1,7 @@
 import ImagePanel from '../components/LoginComponents/ImagePanel';
 import RightPanel from '../components/LoginComponents/RightPanel';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import ProfileView from '../pages/layout/profileView';
+import ProfileView from './profilepage';
 
 const Homepage = () => {
   const { user, error, isLoading } = useUser();

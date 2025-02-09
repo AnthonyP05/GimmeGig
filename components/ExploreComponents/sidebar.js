@@ -69,15 +69,16 @@ const Sidebar = () => {
                 <div style={titleContainer}>
                     <h2 className={russo.className} style={titles}>GG</h2>
                 </div>
-                <div style={boxContainer}>
-                    <SidebarCard href="/layout/profileView" imageSrc="/money-41-256.png" altText="P" title="Finances" />
-                    <SidebarCard href="/layout/discoverpage" imageSrc="/ozzy.jpg" altText="G" title="Gigs/Artists" />
-                    <SidebarCard href="/link3" imageSrc="/profile-icon-png-889.png" altText="$" title="Profile" />
+                <div className={russo.className} style={boxContainer}>
+                    <SidebarCard href="../../profilepage" imageSrc="/money-41-256.png" altText="P" title="Finances" />
+                    <SidebarCard href="../../discoverpage" imageSrc="/ozzy.jpg" altText="G" title="Gigs/Artists" />
+                    <SidebarCard href="#" imageSrc="/profile-icon-png-889.png" altText="$" title="Profile" />
+
                 </div>
             </div>
             <div style={verticalLine}></div>
             <Link href="/api/auth/logout">
-                <div style={logoutStyles}>Logout</div>
+                <div className={russo.className} style={logoutStyles}>Logout</div>
             </Link>
         </div>
     );
