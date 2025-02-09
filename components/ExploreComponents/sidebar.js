@@ -77,7 +77,7 @@ const Sidebar = () => {
             </div>
             <div style={verticalLine}></div>
             <Link href="/api/auth/logout">
-                <div style={logoutStyles}>Logout</div>
+                <div className={russo.className} style={logoutStyles}>Logout</div>
             </Link>
         </div>
     );
