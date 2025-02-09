@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
+import { CategoryContext } from '../../context/CategoryContext';
 
 export default function LoginButtons() {
   const [selectedButton, setSelectedButton] = useState('musician');
   const router = useRouter();
+  const { setCategory } = useContext(CategoryContext);
 
   const musicianButtonStyle = {
     backgroundColor: selectedButton === 'musician' ? '#9f7aea' : '#e2e8f0',
@@ -28,14 +30,14 @@ export default function LoginButtons() {
   const buttonContainerStyle = {
     display: 'flex',
     gap: '3.5rem',
-    justifyContent: 'center', // Center the buttons horizontally
-    width: '100%', // Ensure the container takes the full width
+    justifyContent: 'center',
+    width: '100%',
   };
 
   const handleButtonClick = (button) => {
     setSelectedButton(button);
+    setCategory(button);
     router.push('/api/auth/login');
-    // Enter into database login type
   };
 
   return (
