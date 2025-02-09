@@ -195,15 +195,44 @@ const ProfileView = () => {
 						<h1 style={{ color: 'white', marginBottom: '20px' }}>Top Songs</h1>
 						<button onClick={fetchTopTracks} style={{ ...button, marginBottom: '16px' }}>Get Top Songs</button>
 						<div style={{ marginTop: '16px', color: 'white' }}>
-							{topTracks.length > 0 ? (
-								topTracks.map((track) => (
-									<div key={track.id} style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-										<a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer">
-											<img src={track.album.images[0].url} alt={track.name} width="100" />
-										</a>
-										<p>{track.name}</p>
-									</div>
-								))
+						{topTracks.length > 0 ? (
+								<div style={{ 
+									display: 'flex', 
+									flexWrap: 'wrap', 
+									gap: '24px',
+									justifyContent: 'flex-start'
+								}}>
+									{topTracks.slice(0, 9).map((track) => (
+										<div key={track.id} style={{ 
+											width: 'calc(33.33% - 16px)',
+											minWidth: '200px',
+											display: 'flex',
+											flexDirection: 'column',
+											alignItems: 'center',
+											gap: '8px',
+											marginBottom: '16px',
+											textAlign: 'center'
+										}}>
+											<a href={track.external_urls.spotify} target="_blank" rel="noopener noreferrer">
+												<img 
+													src={track.album.images[0].url} 
+													alt={track.name} 
+													width="150" 
+													height="150"
+													style={{ borderRadius: '4px' }}
+												/>
+											</a>
+											<p style={{ 
+												marginTop: '8px',
+												fontSize: '14px',
+												maxWidth: '150px',
+												overflow: 'hidden',
+												textOverflow: 'ellipsis',
+												whiteSpace: 'nowrap'
+											}}>{track.name}</p>
+										</div>
+									))}
+								</div>
 							) : (
 								<p>No Music Yet</p>
 							)}
