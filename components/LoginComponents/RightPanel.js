@@ -37,10 +37,6 @@ export default function RightPanel() {
     boxSizing: 'border-box', // Include padding and border in the element's total width and height
   };
 
-  if (user) {
-    return <ProfileView />;
-  }
-
   return (
     <div style={rightPaneStyle}>
       <h1 className={roboto.className} style={headlineStyle}>
