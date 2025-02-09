@@ -69,7 +69,7 @@ const Sidebar = () => {
                 <div style={titleContainer}>
                     <h2 className={russo.className} style={titles}>GG</h2>
                 </div>
-                <div style={boxContainer}>
+                <div className={russo.className} style={boxContainer}>
                     <SidebarCard href="../../profilepage" imageSrc="/money-41-256.png" altText="P" title="Finances" />
                     <SidebarCard href="../../discoverpage" imageSrc="/ozzy.jpg" altText="G" title="Gigs/Artists" />
                     <SidebarCard href="#" imageSrc="/profile-icon-png-889.png" altText="$" title="Profile" />
