@@ -6,7 +6,7 @@ import MyContext from '../../TextContext/MyContext';
 export default function LoginButtons() {
   const [selectedButton, setSelectedButton] = useState('musician');
   const router = useRouter();
-  const { sharedState, setSharedState } = useContext(MyContext);
+  var { sharedState, setSharedState } = useContext(MyContext);
 
 
   const musicianButtonStyle = {
@@ -38,7 +38,8 @@ export default function LoginButtons() {
 
   const handleButtonClick = (button) => {
     setSelectedButton(button);
-    setSharedState({ category: button });
+    setSharedState(button);
+    console.log("Shared state: " + sharedState)
     router.push('/api/auth/login');
   };
 

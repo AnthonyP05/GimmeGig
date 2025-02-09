@@ -1,7 +1,17 @@
 import React from 'react';
 import Sidebar from '../components/ExploreComponents/sidebar';
+import { useContext } from 'react';
+import MyContext from '../TextContext/MyContext';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { useEffect } from 'react';
+
+
 
 const ProfileView = () => {
+
+    const { user, error, isLoading } = useUser();
+
+    const { sharedState, setSharedState } = useContext(MyContext);
 
     const [isEditing, setIsEditing] = React.useState(false);
     
@@ -130,6 +140,20 @@ const ProfileView = () => {
         cursor: 'pointer',
         padding: 0
     };
+
+    useEffect(() => {
+        console.log(sharedState)
+        if (user && !isLoading && sharedState !== 'none') {
+          // Ensure category is not 'none' before making the API request
+          fetch('/api/user', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userID: user.sub, category: sharedState }),
+          }).then(() => console.log("User created/updated with category:", sharedState));
+        }
+      }, [user, isLoading, sharedState]);
 
   return (
     <div style={containerStyles}>
