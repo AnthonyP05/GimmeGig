@@ -1,4 +1,4 @@
-import Homepage from '../layout/Login';
+import Homepage from './loginpage';
 
 export default function Home() {
   return (

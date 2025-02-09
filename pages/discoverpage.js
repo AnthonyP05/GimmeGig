@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Sidebar from '../../components/ExploreComponents/sidebar';
-import Card from '../../components/ExploreComponents/card';
+import Sidebar from '../components/ExploreComponents/sidebar';
+import Card from '../components/ExploreComponents/card';
 import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({
