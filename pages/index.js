@@ -1,7 +1,7 @@
-import ProfileView from './layout/profileView';
+import FinancialResources from './layout/financialResources';
 
 export default function Home() {
   return (
-    <ProfileView />
+    <FinancialResources/>
   );
 }
