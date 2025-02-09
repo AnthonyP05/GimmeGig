@@ -1,7 +1,6 @@
 import LoginButtons from './LoginButtons';
 import { Roboto } from 'next/font/google';
 import { useUser } from '@auth0/nextjs-auth0/client';
-import ProfileView from '../../pages/profilepage';
 
 const roboto = Roboto({
   weight: ['400', '700'], // Specify the weights you need
@@ -42,7 +41,7 @@ export default function RightPanel() {
       <h1 className={roboto.className} style={headlineStyle}>
         Book a gig in a <span style={highlightStyle}>click</span>.
       </h1>
-      <LoginButtons />
+      <LoginButtons /> {/* Pass setCategory as a prop */}
     </div>
   );
 }

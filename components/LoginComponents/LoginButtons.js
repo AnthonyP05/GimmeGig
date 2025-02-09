@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import MyContext from '../../TextContext/MyContext';
 
 export default function LoginButtons() {
   const [selectedButton, setSelectedButton] = useState('musician');
   const router = useRouter();
+  const { sharedState, setSharedState } = useContext(MyContext);
+
 
   const musicianButtonStyle = {
     backgroundColor: selectedButton === 'musician' ? '#9f7aea' : '#e2e8f0',
@@ -34,8 +38,8 @@ export default function LoginButtons() {
 
   const handleButtonClick = (button) => {
     setSelectedButton(button);
+    setSharedState({ category: button });
     router.push('/api/auth/login');
-    // Enter into database login type
   };
 
   return (
